@@ -1,0 +1,7 @@
+{
+  "name": "VoxStudy AI",
+  "description": "A voice-first study assistant powered by Gemini and ElevenLabs.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

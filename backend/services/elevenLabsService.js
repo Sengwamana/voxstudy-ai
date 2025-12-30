@@ -34,12 +34,14 @@ const generateSpeechStream = async (text, voiceId) => {
        console.error("ElevenLabs API Error:", response.status, errorText);
     }
 
-    // Check for quota exceeded
-    if (response.status === 401 && errorText.includes("quota_exceeded")) {
-      console.warn("ElevenLabs Quota Exceeded (handled gracefully)");
-      const error = new Error("ElevenLabs Quota Exceeded");
+    // Check for quota exceeded or unusual activity (security flag on cloud IPs)
+    if (response.status === 401 && (errorText.includes("quota_exceeded") || errorText.includes("detected_unusual_activity"))) {
+      const isSecurityFlag = errorText.includes("detected_unusual_activity");
+      console.warn(isSecurityFlag ? "ElevenLabs Security Flag detected (unusual activity from cloud IP)" : "ElevenLabs Quota Exceeded (handled gracefully)");
+      
+      const error = new Error(isSecurityFlag ? "ElevenLabs security restricted this cloud request. Use local speaker." : "ElevenLabs Quota Exceeded");
       error.code = "QUOTA_EXCEEDED";
-      error.status = 429; // Use 429 Too Many Requests for quota issues
+      error.status = 429;
       throw error;
     }
 

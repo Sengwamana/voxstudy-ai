@@ -13,13 +13,33 @@ const HISTORY_STORAGE_KEY = 'voxstudy_history';
 
 const App: React.FC = () => {
   // Config State
-  const [config, setConfig] = useState<ApiConfig>({
+  const [config, setConfig] = useState<ApiConfig & { elevenLabsAgentId?: string }>({
     elevenLabsVoiceId: DEFAULT_VOICE_ID,
     studyMode: 'tutor'
   });
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   const [isConversationMode, setIsConversationMode] = useState(false);
+
+  // Fetch dynamic config from backend on mount
+  useEffect(() => {
+    const fetchConfig = async () => {
+      try {
+        const response = await fetch('/api/config');
+        if (response.ok) {
+          const data = await response.json();
+          setConfig(prev => ({
+            ...prev,
+            elevenLabsVoiceId: data.elevenLabsVoiceId || prev.elevenLabsVoiceId,
+            elevenLabsAgentId: data.elevenLabsAgentId
+          }));
+        }
+      } catch (err) {
+        console.warn("Failed to fetch backend config, using defaults", err);
+      }
+    };
+    fetchConfig();
+  }, []);
 
   // App State
   const [status, setStatus] = useState<AppStatus>('idle');
@@ -247,6 +267,7 @@ const App: React.FC = () => {
     return (
       <ConversationMode 
         mode={config.studyMode} 
+        agentId={config.elevenLabsAgentId}
         onExit={() => setIsConversationMode(false)} 
       />
     );

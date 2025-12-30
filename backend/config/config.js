@@ -11,6 +11,7 @@ const config = {
   elevenLabs: {
     apiKey: process.env.ELEVENLABS_API_KEY,
     defaultVoiceId: process.env.ELEVENLABS_VOICE_ID || "7sXif1ZLnLgbMgmFvs2G",
+    agentId: process.env.ELEVENLABS_AGENT_ID,
   }
 };
 

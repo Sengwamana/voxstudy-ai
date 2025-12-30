@@ -5,10 +5,11 @@ import { MODE_CONFIGS } from '../constants';
 
 interface ConversationModeProps {
   mode: StudyMode;
+  agentId?: string;
   onExit: () => void;
 }
 
-export const ConversationMode: React.FC<ConversationModeProps> = ({ mode, onExit }) => {
+export const ConversationMode: React.FC<ConversationModeProps> = ({ mode, agentId, onExit }) => {
   const {
     isConnected,
     isSpeaking,
@@ -17,7 +18,7 @@ export const ConversationMode: React.FC<ConversationModeProps> = ({ mode, onExit
     status,
     startConversation,
     endConversation,
-  } = useElevenLabsConversation({ mode });
+  } = useElevenLabsConversation({ mode, agentId });
 
   const handleToggle = async () => {
     if (isConnected) {

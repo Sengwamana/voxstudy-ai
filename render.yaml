@@ -1,12 +1,8 @@
-version: 1
 services:
   - type: web
     name: voxstudy-ai
     env: docker
     plan: free
-    region: ohio
-    dockerFilePath: Dockerfile
-    dockerContext: .
     envVars:
       - key: PORT
         value: 8080

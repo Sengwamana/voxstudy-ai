@@ -30,7 +30,12 @@ export const generateSpeech = async (
 
     const contentType = response.headers.get("content-type");
     if (!response.ok || (contentType && contentType.includes("text/html"))) {
-       throw new Error("Backend TTS unavailable");
+       let msg = "Backend TTS unavailable";
+       try {
+         const errJson = await response.json();
+         msg = errJson.error || msg;
+       } catch (e) { /* fallback to default */ }
+       throw new Error(msg);
     }
 
     const blob = await response.blob();

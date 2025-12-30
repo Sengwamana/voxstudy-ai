@@ -48,7 +48,8 @@ const handleTTS = async (req, res) => {
       }
 
       return res.status(500).json({ 
-        error: "Voice generation failed. Please try reading the text instead." 
+        error: error.message || "Voice generation failed.",
+        code: "TTS_FAILED"
       });
     }
     res.end();

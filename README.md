@@ -111,6 +111,8 @@ Visit `http://localhost:5173`
 
 ---
 
+---
+
 ## ☁️ Deploy to Google Cloud Run
 
 ```bash
@@ -125,6 +127,16 @@ gcloud run deploy voxstudy-ai \
   --allow-unauthenticated \
   --set-env-vars API_KEY=xxx,ELEVENLABS_API_KEY=xxx
 ```
+
+---
+
+## 🚀 Alternative: Deploy to Render (Free)
+
+1. **Connect GitHub**: Log in to [Render](https://render.com) and click **New +** -> **Blueprint**.
+2. **Connect Repo**: Select your `voxstudy-ai` repository.
+3. **Configure**: Render will automatically detect `render.yaml`.
+4. **Environment Variables**: Add your API keys in the Render dashboard for the service.
+5. **Deploy**: Click **Apply**!
 
 ---
 

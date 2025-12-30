@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: voxstudy-ai
+    env: docker
+    plan: free
+    dockerFilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: NODE_ENV
+        value: production
+      - key: API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: ELEVENLABS_VOICE_ID
+        sync: false
+      - key: ELEVENLABS_AGENT_ID
+        sync: false

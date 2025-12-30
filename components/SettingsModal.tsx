@@ -70,9 +70,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               </div>
               <button 
                 onClick={() => onVoiceToggle(!voiceEnabled)}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${voiceEnabled ? 'bg-indigo-600' : 'bg-gray-200'}`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#D97706] focus:ring-offset-2 ${voiceEnabled ? 'bg-[#D97706]' : 'bg-gray-200'}`}
               >
-                 <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition duration-200 ease-in-out ${voiceEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
+                 <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition duration-200 ease-in-out shadow-sm ${voiceEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
               </button>
            </div>
         </div>
@@ -121,7 +121,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 onSave(config);
                 onClose();
             }}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm font-medium"
+            className="px-6 py-2.5 bg-gradient-to-br from-[#F59E0B] to-[#D97706] text-white rounded-xl hover:shadow-lg hover:shadow-orange-500/20 transition-all text-sm font-semibold active:scale-95"
           >
             Save Changes
           </button>

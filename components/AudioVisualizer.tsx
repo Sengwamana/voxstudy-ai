@@ -62,10 +62,24 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ stream }) => {
       ctx.closePath();
       
       // Styling
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-      ctx.lineWidth = 2;
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#FFFFFF');
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0.4)');
+      
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = 3;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      
+      // Shadow glow
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
+      
       ctx.stroke();
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+      
+      // Reset shadow for fill
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
       ctx.fill();
     };
 

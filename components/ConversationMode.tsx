@@ -36,14 +36,19 @@ export const ConversationMode: React.FC<ConversationModeProps> = ({ mode, onExit
   };
 
   const getButtonColor = () => {
-    if (isSpeaking) return 'bg-[#059669]'; // Speaking - Green
-    if (isListening) return 'bg-[#DC2626]'; // Listening - Red
-    if (isConnected) return 'bg-[#D97706]'; // Connected - Orange
-    return 'bg-[#6B6760]'; // Disconnected - Gray
+    if (isSpeaking) return 'bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-xl shadow-emerald-500/30'; 
+    if (isListening) return 'bg-gradient-to-br from-red-500 to-red-700 shadow-xl shadow-red-500/30'; 
+    if (isConnected) return 'bg-gradient-to-br from-orange-400 to-orange-600 shadow-xl shadow-orange-500/30'; 
+    return 'bg-gradient-to-br from-[#7C7974] to-[#6B6760] shadow-lg';
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#FAF9F6] relative h-[100dvh]">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#FAF9F6] relative h-[100dvh] overflow-hidden">
+      {/* Background patterns for premium feel */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none select-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#D97706] rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#D97706] rounded-full blur-[120px]"></div>
+      </div>
       {/* Header */}
       <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
         <div>
@@ -101,16 +106,16 @@ export const ConversationMode: React.FC<ConversationModeProps> = ({ mode, onExit
 
       {/* Conversation Log - Fixed height and scrollable */}
       {messages.length > 0 && (
-        <div className="absolute bottom-4 left-4 right-4 max-h-[30vh] overflow-y-auto bg-white/90 backdrop-blur-sm border border-[#DEDBD4] rounded-xl p-4 shadow-sm z-10 scrollbar-hide">
-          {messages.slice(-5).map((msg, i) => (
-            <div key={i} className={`mb-2 ${msg.role === 'user' ? 'text-right' : ''}`}>
-              <span className={`inline-block px-3 py-1.5 rounded-lg text-sm ${
+        <div className="absolute bottom-6 left-4 right-4 max-h-[35vh] overflow-y-auto bg-white/70 backdrop-blur-md border border-[#DEDBD4]/50 rounded-2xl p-5 shadow-xl z-10 scrollbar-hide space-y-3">
+          {messages.slice(-8).map((msg, i) => (
+            <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
+              <div className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed shadow-sm ${
                 msg.role === 'user' 
-                  ? 'bg-[#D97706] text-white' 
-                  : 'bg-[#F5F4EF] text-[#1A1915]'
+                  ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-tr-none' 
+                  : 'bg-white/90 text-[#1A1915] border border-[#DEDBD4]/30 rounded-tl-none font-medium'
               }`}>
                 {msg.content}
-              </span>
+              </div>
             </div>
           ))}
         </div>

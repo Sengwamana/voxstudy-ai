@@ -13,15 +13,15 @@ export const MicrophoneButton: React.FC<MicrophoneButtonProps> = ({ status, onCl
   const getButtonStyles = () => {
     switch (status) {
       case 'listening':
-        return 'bg-[#DC2626] shadow-lg shadow-red-500/30 ring-4 ring-red-200 scale-105';
+        return 'bg-gradient-to-br from-red-500 to-red-600 shadow-xl shadow-red-500/40 ring-4 ring-red-100 scale-105';
       case 'processing':
-        return 'bg-[#6B6760] cursor-wait animate-pulse shadow-lg ring-2 ring-[#DEDBD4]';
+        return 'bg-gradient-to-br from-[#7C7974] to-[#6B6760] cursor-wait animate-pulse shadow-lg ring-2 ring-[#DEDBD4]/50';
       case 'speaking':
-        return 'bg-[#059669] hover:opacity-90 shadow-lg shadow-emerald-500/30 ring-2 ring-emerald-200';
+        return 'bg-gradient-to-br from-[#10B981] to-[#059669] hover:opacity-90 shadow-xl shadow-emerald-500/40 ring-4 ring-emerald-100';
       case 'idle':
       case 'error':
       default:
-        return 'bg-[#D97706] shadow-xl shadow-orange-500/30 ring-2 ring-transparent hover:ring-orange-200 hover:scale-105 hover:-translate-y-0.5';
+        return 'bg-gradient-to-br from-[#F59E0B] to-[#D97706] shadow-2xl shadow-orange-500/40 ring-2 ring-transparent hover:ring-orange-200 hover:scale-105 hover:-translate-y-1';
     }
   };
 

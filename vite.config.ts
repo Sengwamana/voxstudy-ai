@@ -9,6 +9,8 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env.API_KEY': JSON.stringify(env.API_KEY),
       'process.env.ELEVENLABS_API_KEY': JSON.stringify(env.ELEVENLABS_API_KEY),
+      'process.env.ELEVENLABS_AGENT_ID': JSON.stringify(env.ELEVENLABS_AGENT_ID || ''),
+      'process.env.ELEVENLABS_VOICE_ID': JSON.stringify(env.ELEVENLABS_VOICE_ID || ''),
     },
     server: {
       proxy: {

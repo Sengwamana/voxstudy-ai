@@ -149,7 +149,7 @@ gcloud run deploy voxstudy-ai \
 ## 🏆 Hackathon Submission
 
 - **Challenge**: ElevenLabs
-- **Team**: [Your Name]
+- **Team**: Sengwamana Emeran
 - **Live URL**: [https://voxstudy-ai-xxx.run.app](#)
 - **Repository**: [GitHub](#)
 
